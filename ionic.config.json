@@ -1,0 +1,7 @@
+{
+  "name": "dog-breed-id-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
