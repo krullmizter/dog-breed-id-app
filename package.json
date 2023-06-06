@@ -38,5 +38,5 @@
     "vitest": "^0.29.2",
     "vue-tsc": "^1.0.24"
   },
-  "description": "An Ionic project"
+  "description": "An open-source dog breed identification app built with Ionic Vue"
 }
