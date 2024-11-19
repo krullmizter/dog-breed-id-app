@@ -6,25 +6,33 @@ on:
       - opened
       - synchronize
       - reopened
+  workflow_dispatch:
 
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Check if the PR is from Dependabot
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh
+
       - name: Check PR author
         id: check_author
         run: |
-          echo "::set-output name=is_dependabot::$(if [[ '${{ github.actor }}' == 'dependabot[bot]' ]]; then echo true; else echo false; fi)"
+          echo "is_dependabot=$([[ '${{ github.actor }}' == 'dependabot[bot]' ]] && echo 'true' || echo 'false')" >> $GITHUB_ENV
 
-      # Automatically merge if it is Dependabot and is mergeable
+      - name: Check if PR is mergeable
+        id: check_mergeable
+        run: |
+          pr_number=${{ github.event.pull_request.number }}
+          pr_info=$(gh pr view $pr_number --json mergeable)
+          echo "mergeable=$(jq -r .mergeable <<< "$pr_info")" >> $GITHUB_ENV
+
       - name: Auto-merge Dependabot PR
-        if: steps.check_author.outputs.is_dependabot == 'true' && github.event.pull_request.mergeable == true
+        if: env.is_dependabot == 'true' && env.mergeable == 'true'
         run: |
           gh pr merge ${{ github.event.pull_request.number }} --merge --admin
         env:
