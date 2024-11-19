@@ -19,6 +19,11 @@ jobs:
       - name: Install GitHub CLI
         run: sudo apt-get install gh
 
+      - name: Check GH_TOKEN
+        run: echo "GH_TOKEN is set"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Check PR author
         id: check_author
         run: |
@@ -30,10 +35,12 @@ jobs:
           pr_number=${{ github.event.pull_request.number }}
           pr_info=$(gh pr view $pr_number --json mergeable)
           echo "mergeable=$(jq -r .mergeable <<< "$pr_info")" >> $GITHUB_ENV
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Auto-merge Dependabot PR
         if: env.is_dependabot == 'true' && env.mergeable == 'true'
         run: |
           gh pr merge ${{ github.event.pull_request.number }} --merge --admin
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
