@@ -1,38 +1,31 @@
-name: Dependabot auto-approve and merge
-on: [pull_request, workflow_dispatch]
+name: Auto-Merge Dependabot PRs
 
-permissions:
-  pull-requests: write
-  contents: write
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
-  dependabot:
+  auto-merge:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login == 'dependabot[bot]'
-    steps:
-      - name: Check for open Dependabot PRs
-        id: check_open_prs
-        run: |
-          gh pr list --label dependencies --state open --json number,title | jq '.[] | select(.title | contains("dependabot"))' > open_prs.json
-          if [ -s open_prs.json ]; then
-            echo "Dependabot PR already open. Skipping approval and merge."
-            exit 0
-          fi
 
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v1
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-      
-      - name: Approve a PR
-        run: gh pr review --approve "$PR_URL"
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Check if the PR is from Dependabot
+      - name: Check PR author
+        id: check_author
+        run: |
+          echo "::set-output name=is_dependabot::$(if [[ '${{ github.actor }}' == 'dependabot[bot]' ]]; then echo true; else echo false; fi)"
+
+      # Automatically merge if it is Dependabot and is mergeable
+      - name: Auto-merge Dependabot PR
+        if: steps.check_author.outputs.is_dependabot == 'true' && github.event.pull_request.mergeable == true
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} --merge --admin
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Merge PR
-        run: gh pr merge --auto --squash "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
