@@ -39,7 +39,7 @@
     "jsdom": "^26.0.0",
     "typescript": "^5.7.2",
     "vite": "^4.5.5",
-    "vitest": "^2.1.8",
+    "vitest": "^3.0.2",
     "vue-tsc": "^2.2.0"
   },
   "description": "An open-source dog breed identification app built with Ionic Vue"
