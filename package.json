@@ -31,7 +31,7 @@
     "@capacitor/cli": "6.2.0",
     "@vitejs/plugin-legacy": "^6.0.0",
     "@vitejs/plugin-vue": "^5.2.1",
-    "@vue/eslint-config-typescript": "^14.3.0",
+    "@vue/eslint-config-typescript": "^14.5.0",
     "@vue/test-utils": "^2.4.6",
     "cypress": "^14.0.3",
     "eslint": "^9.20.0",
