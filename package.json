@@ -12,7 +12,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@capacitor/app": "6.0.2",
+    "@capacitor/app": "7.0.0",
     "@capacitor/camera": "^7.0.0",
     "@capacitor/core": "7.0.1",
     "@capacitor/filesystem": "^7.0.0",
