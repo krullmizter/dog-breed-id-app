@@ -21,7 +21,7 @@
     "@capacitor/preferences": "^7.0.1",
     "@capacitor/status-bar": "7.0.1",
     "@ionic/pwa-elements": "^3.3.0",
-    "@ionic/vue": "^8.6.0",
+    "@ionic/vue": "^8.6.1",
     "@ionic/vue-router": "^8.6.0",
     "ionicons": "^8.0.9",
     "vue": "^3.5.16",
