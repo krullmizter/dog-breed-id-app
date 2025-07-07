@@ -28,7 +28,7 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "7.4.0",
+    "@capacitor/cli": "7.4.1",
     "@vitejs/plugin-legacy": "^6.1.1",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/eslint-config-typescript": "^14.5.1",
