@@ -14,8 +14,10 @@
   "dependencies": {
     "@capacitor/app": "7.0.1",
     "@capacitor/camera": "^7.0.1",
-    "@capacitor/core": "7.4.0",
+    "@capacitor/core": "7.4.1",
     "@capacitor/filesystem": "^7.1.1",
+    "@capacitor/core": "7.4.0",
+    "@capacitor/filesystem": "^7.1.2",
     "@capacitor/haptics": "7.0.1",
     "@capacitor/keyboard": "7.0.1",
     "@capacitor/preferences": "^7.0.1",
@@ -28,19 +30,19 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "7.4.0",
+    "@capacitor/cli": "7.4.1",
     "@vitejs/plugin-legacy": "^6.1.1",
     "@vitejs/plugin-vue": "^6.0.0",
-    "@vue/eslint-config-typescript": "^14.5.1",
+    "@vue/eslint-config-typescript": "^14.6.0",
     "@vue/test-utils": "^2.4.6",
-    "cypress": "^14.5.0",
+    "cypress": "^14.5.1",
     "eslint": "^9.30.0",
-    "eslint-plugin-vue": "^10.2.0",
+    "eslint-plugin-vue": "^10.3.0",
     "jsdom": "^26.1.0",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
     "vitest": "^3.2.4",
-    "vue-tsc": "^2.2.10"
+    "vue-tsc": "^3.0.1"
   },
   "description": "An open-source dog breed identification app built with Ionic Vue"
 }
