@@ -14,6 +14,8 @@
   "dependencies": {
     "@capacitor/app": "7.0.1",
     "@capacitor/camera": "^7.0.1",
+    "@capacitor/core": "7.4.1",
+    "@capacitor/filesystem": "^7.1.1",
     "@capacitor/core": "7.4.0",
     "@capacitor/filesystem": "^7.1.2",
     "@capacitor/haptics": "7.0.1",
